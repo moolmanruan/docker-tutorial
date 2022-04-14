@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -f dev.Dockerfile -t ruanmoolman/docker-tutorial .
+
+script:
+  - docker run -e CI=true ruanmoolman/docker-tutorial npm run test
