@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true ruanmoolman/docker-tutorial npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "simplefe"
+  env: "Simplefe-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-229431878733"
+  bucket_path: "simplefe"
+  on:
+    branch: "master"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secret: "$AWS_SECRET_KEY"
